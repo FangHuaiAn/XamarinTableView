@@ -31,20 +31,23 @@ namespace XamarinTableView.Droid
 
 	        var list = new List<MyClass>
 	        {
-	            new MyClass {Name = @"Aa", Description = @"aaaaaaa"},
+				new MyClass {Name = @"Aa", Description = @"aaaaaaa", ImageUrl = ""},
 	            new MyClass {Name = @"Bb", Description = @"cccbbbaaa", ImageUrl = @"https://"},
-	            new MyClass {Name = @"Cc", Description = @"cccaaaaaaa"},
+				new MyClass {Name = @"Cc", Description = @"cccaaaaaaa", ImageUrl = ""},
 	            new MyClass {Name = @"Dd", Description = @"ddcccaaaaaaa", ImageUrl = @"https://"}
 	        };
 
-            _myListView.Adapter = new MyClassListAdapter( list, this );
-	        _myListView.ItemClick += (sender, args) =>
-	        {
-	            MyClass myclass = list[args.Position];
+			RunOnUiThread (
+				() => {
+					
+					_myListView.Adapter = new MyClassListAdapter (list, this);
+					_myListView.ItemClick += (sender, args) => {
+						MyClass myclass = list [args.Position];
 
-	        };
+					};
 
-
+				}
+			);
 
 	    }
 
@@ -76,10 +79,11 @@ namespace XamarinTableView.Droid
 
                 if (null == view)
                 {
-                    this.context.LayoutInflater.Inflate(Resource.Layout.myclass_listview_itemview, null);
+                    view = this.context.LayoutInflater.Inflate( Resource.Layout.myclass_listview_itemview, null );
 
                 }
 
+				view.FindViewById<TextView>(Resource.Id.myListView_itemview_txtName).Text = myClass.Name ;
 
                 return view;
             }
