@@ -2,14 +2,15 @@
 
 namespace XamarinTableView
 {
-	public class MyClass
+	public class User
 	{
-		public MyClass ()
+		public User ()
 		{
 		}
 
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public string Password { get; set; }
 
 		public string ImageUrl { get; set; }
 	}

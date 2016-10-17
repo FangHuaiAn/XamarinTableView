@@ -24,21 +24,21 @@ namespace XamarinTableView.iOS
 		}
 
 		public void ShowTable(){
-		
-			var list = new List<MyClass> ();
-		
-			list.Add (new MyClass{ Name = @"Aa", Description = @"aaaaaaa" });
-			list.Add (new MyClass{ Name = @"Bb", Description = @"cccbbbaaa", ImageUrl =@"https://" });
-			list.Add (new MyClass{ Name = @"Cc", Description = @"cccaaaaaaa" });
-			list.Add (new MyClass{ Name = @"Dd", Description = @"ddcccaaaaaaa", ImageUrl =@"https://" });
 
+			var list = new List<User>
+			{
+				new User {Name = @"Aa", Description = @"使用者 甲", ImageUrl = ""},
+				new User {Name = @"Bb", Description = @"使用者 乙", ImageUrl = @"https://"},
+				new User {Name = @"Cc", Description = @"使用者 丙", ImageUrl = ""},
+				new User {Name = @"Dd", Description = @"使用者 丁", ImageUrl = @"https://"}
+			};
 
-			var tableSource = new MyClassTableSource (list);
+			var tableSource = new UserTableSource (list);
 			myTableView.Source = tableSource;
 
-			tableSource.MyClassSelected += delegate(object sender, MyClassSelectedEventArgs e) {
+			tableSource.UserSelected += delegate(object sender, UserSelectedEventArgs e) {
 
-				Debug.WriteLine (e.SelectedMyClass.Name);
+				Debug.WriteLine (e.SelectedUser.Name);
 			};
 
 			myTableView.ReloadData ();
@@ -52,18 +52,18 @@ namespace XamarinTableView.iOS
 			// Release any cached data, images, etc that aren't in use.		
 		}
 
-		public class MyClassTableSource :UITableViewSource {
+		public class UserTableSource :UITableViewSource {
 			// CellView Identifier
 			const string BlueCellViewIdentifier = @"BlueCellView";
 			const string GreenCellViewIdentifier = @"GreenCellView";
 
 			// ctor. Model
 
-			private List<MyClass> MyClasses { get; set;}
+			private List<User> Users { get; set;}
 
-			public MyClassTableSource( IEnumerable<MyClass> myClasses ){
-				MyClasses = new List<MyClass>();
-				MyClasses.AddRange( myClasses );
+			public UserTableSource( IEnumerable<User> users ){
+				Users = new List<User>();
+				Users.AddRange( users );
 			}
 
 			// Model -> Controller -> View
@@ -71,12 +71,12 @@ namespace XamarinTableView.iOS
 			// Memory
 			public override nint RowsInSection (UITableView tableview, nint section)
 			{
-				return (nint)MyClasses.Count;
+				return (nint)Users.Count;
 			}
 
 			public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
-				MyClass myClass = MyClasses[indexPath.Row];
+				User myClass = Users[indexPath.Row];
 
 				if (string.IsNullOrEmpty (myClass.ImageUrl)) {
 					// Green
@@ -93,7 +93,7 @@ namespace XamarinTableView.iOS
 			public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 
-				MyClass myClass = MyClasses[indexPath.Row];
+				User myClass = Users[indexPath.Row];
 
 				if (string.IsNullOrEmpty (myClass.ImageUrl)) {
 					// Green
@@ -126,26 +126,29 @@ namespace XamarinTableView.iOS
 			{
 				tableView.DeselectRow (indexPath, true);
 
-				MyClass myClass = MyClasses[indexPath.Row];
+				User user = Users[indexPath.Row];
 
-				EventHandler<MyClassSelectedEventArgs> handle = MyClassSelected;
+				EventHandler<UserSelectedEventArgs> handle = UserSelected;
 
 				if (null != handle) {
 
-					var args = new MyClassSelectedEventArgs{ SelectedMyClass = myClass };
+					var args = new UserSelectedEventArgs{ SelectedUser = user };
 				
 					handle (this, args);
 				}
 
 			}
 
-			public event EventHandler<MyClassSelectedEventArgs> MyClassSelected ;
+			/// <summary>
+			/// 設計事件，回傳結果給呼叫端
+			/// </summary>
+			public event EventHandler<UserSelectedEventArgs> UserSelected ;
 
 		}
 
-		public class MyClassSelectedEventArgs : EventArgs{
+		public class UserSelectedEventArgs : EventArgs{
 
-			public MyClass SelectedMyClass { get; set;}
+			public User SelectedUser { get; set;}
 
 		}
 
