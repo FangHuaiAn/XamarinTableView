@@ -13,11 +13,10 @@ namespace XamarinTableView.iOS
 		{
 		}
 
-		public void UpdateUI(User myClass){
+		public void UpdateUI(User user){
 
-			lbName.Text = myClass.Name;
-			lbDesc.Text = myClass.Description;
-
+			lbName.Text = user.Name;
+			lbDesc.Text = user.Description;
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace XamarinTableView.iOS
 	partial class BlueCellView
 	{
 		[Outlet]
-		UIKit.UIButton btnConfirm { get; set; }
+        internal UIKit.UIButton btnConfirm { get; set; }
 
 		[Outlet]
 		UIKit.UIImageView iconImageView { get; set; }

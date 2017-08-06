@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    swipe:leftEdgeSwipeOffset="0dp"
+    swipe:rightEdgeSwipeOffset="0dp">
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:background="#FF5534"
+        android:gravity="center"
+        android:tag="Bottom32">
+        <Button
+            android:id="@+id/item_view2"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="#DDDDDD"
+            android:text="View"
+            android:textColor="#FF5534" />
+        <Button
+            android:id="@+id/item_action2"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:text="Action"
+            android:textColor="#FF5534" />
+    </LinearLayout>
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="80dp"
+        android:background="#efefef"
+		>
+	    <TextView
+				android:id="@+id/position2"
+				android:textSize="30sp"
+				android:textColor="#111111"
+				android:layout_alignParentTop="true"
+				android:layout_width="match_parent"
+				android:layout_height="40dp" />
+	    <TextView
+				android:id="@+id/text_data2"
+				android:textSize="20sp"
+				android:textColor="#222222"
+				android:layout_alignParentBottom="true"
+				android:layout_width="match_parent"
+				android:layout_height="40dp" />
+	</RelativeLayout>
+</com.daimajia.swipe.SwipeLayout>

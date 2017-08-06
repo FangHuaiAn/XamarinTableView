@@ -13,7 +13,7 @@ namespace XamarinTableView.iOS
 	partial class GreenCellView
 	{
 		[Outlet]
-		UIKit.UIButton btnConfirm { get; set; }
+        internal UIKit.UIButton btnConfirm { get; set; }
 
 		[Outlet]
 		UIKit.UILabel lbDesc { get; set; }
